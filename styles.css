@@ -1,15 +1,18 @@
 body {
   height: 100%;
   margin: 0;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: auto 30%;
-  font-family: "Montserrat";
+  -ms-grid-columns: auto 30%;
+      grid-template-columns: auto 30%;
+  font-family: 'Montserrat';
 }
 
 *,
 *:before,
 *:after {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .line {
@@ -19,19 +22,24 @@ body {
 main {
   margin-left: 20%;
   height: 100vh;
+  display: -ms-grid;
   display: grid;
   place-content: center;
 }
+
 main .content {
   width: 70%;
 }
+
 main .content h1 {
   font-size: 3em;
   position: relative;
 }
+
 main .content h1 span {
   display: block;
 }
+
 main .content p {
   font-size: 1.2em;
   width: 80%;
@@ -64,14 +72,14 @@ a {
 }
 
 span:after {
-  content: " ";
+  content: ' ';
   position: absolute;
   left: 0;
   width: 100%;
   height: 100%;
   background: white;
   z-index: 1;
-  transform-origin: 100% 0;
+  -webkit-transform-origin: 100% 0;
+          transform-origin: 100% 0;
 }
-
 /*# sourceMappingURL=styles.css.map */

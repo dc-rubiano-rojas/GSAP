@@ -11,7 +11,7 @@
 <body>
     <main>
         <div class="content">
-            <h1 class="anim1"><span>Bridging the gap</span> <span>between dream</span> <span>and reality</span></h1>
+            <h1 class="anim1"><span class="s">Bridging the gap</span> <span class="s">between dream</span> <span class="s">and reality</span></h1>
             <p class="anim1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio at ipsa alias modi natus excepturi?</p>
             <a href="#" class="anim1" id="cta">Start Dreaming</a>
         </div>
@@ -22,75 +22,105 @@
         </div>
     </aside>
 
-    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/gsap-latest-beta.min.js" crossorigin="anonymous"></script>
-    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/CSSRulePlugin3.min.js"></script>
+
+
+
+    <!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/gsap-latest-beta.min.js" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/CSSRulePlugin3.min.js"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/CSSRulePlugin.min.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script> -->
     <!-- <script src="app.js"></script> -->
 
+
     <script>
-        var rule = CSSRulePlugin.getRule('span:after');
+        // wait until DOM is ready
+        document.addEventListener("DOMContentLoaded", function(event) {
 
-        /*
-                gsap.from('.anim1', {
-                    opacity: 0,
-                    duration: 1,
-                    y: -50,
-                    stagger: 0.6,
-                    // ease: 'elastic(2, 0.3)'
+            // wait until external stylesheets, links, images, and other external assets are loaded in the window
+            window.addEventListener("load", function() {
+
+                // custom GSAP code goes here
+
+                // ease: Le da como una elasticidad al efecto por ejemplo que rebote
+                // stagger: Hace que cada elemento que tenga esa clase haga la animacion una a una
+                // con una pausa del tiempo que le pongamos
+
+                // var rule = CSSRulePlugin.getRule("span:after");
+
+
+                // gsap.from('.anim1', {
+                //     opacity: 0,
+                //     duration: 1,
+                //     y: -50,
+                //     stagger: 0.6,
+                //     // ease: 'elastic(2, 0.3)'
+                // });
+
+                // gsap.from('img', {
+                //     duration: 1,
+                //     y: 30,
+                //     opacity: 0,
+                //     delay: 1.4,
+                // });
+
+                // gsap.to(rule, {
+                //     cssRule: {
+                //         scaleY: 0
+                //     },
+                //     duration: 1,
+                // });
+
+                // gsap.from('aside', {
+                //     duration: 1,
+                //     delay: 1.1,
+                //     backgroundPosition: '200px 0px',
+                //     opacity: 0
+                // });
+
+
+                // ===================TIMELINE====================================
+                var rule = CSSRulePlugin.getRule("span:after");
+
+                var tl = gsap.timeline({
+                    defaults: {
+                        duration: 1
+                    }
                 });
 
-                gsap.from('img', {
-                    duration: 1,
-                    y: 30,
-                    opacity: 0,
-                    delay: 1.4,
+                tl.from(".anim1", {
+                        y: -50,
+                        stagger: 0.6,
+                        opacity: 0
+                    })
+                    .to(rule, {
+                        duration: 1.8,
+                        cssRule: {
+                            scaleY: 0
+                        }
+                    }, "-=2.2") // Este aprametro "-=2.2" es como un delay que se le aplica al timeline general. Es cmo restarle al 1, 2.2
+                    .from("aside", {
+                            backgroundPosition: '300px 0px',
+                            opacity: 0,
+                        },
+                        "-=1.5")
+                    .from("img", {
+                            y: 50,
+                            opacity: 0,
+                        },
+                        "-=0.5")
+
+
+
+                // 7 Show Click reverse
+                document.getElementById('cta').addEventListener('click', () => {
+                    console.log('click')
+                    tl.reversed() ? tl.play() : tl.reverse();
                 });
 
-                gsap.to(rule, {
-                    cssRule: {
-                        scaleY: 0
-                    },
-                    duration: 1,
-                });
+            }, false);
 
-                gsap.from('aside', {
-                    duration: 1,
-                    delay: 1.1,
-                    backgroundPosition: '200px 0px',
-                    opacity: 0
-                });
-                */
-        var tl = gsap.timeline({
-            defaults: {
-                duration: 1
-            }
-        });
-
-        tl.from(".anim1", {
-                y: -50,
-                stagger: 0.6,
-                opacity: 0
-            })
-            .to(rule, {
-                duration: 1.8,
-                cssRule: {
-                    scaleY: 0
-                },
-            }, "-=2.2") // Este aprametro "-=2.2" es como un delay que se le aplica al timeline general. Es cmo restarle al 1, 2.2
-            .from("aside", {
-                    backgroundPosition: '200px 0px',
-                    opacity: 0,
-                },
-                "-=1.5")
-            .from("img", {
-                    y: 50,
-                    opacity: 0,
-                },
-                "-=0.5")
-
-        // 7 Show Click reverse
-        document.getElementById('cta').addEventListener('click', () => {
-            console.log('click')
-            tl.reversed() ? tl.play() : tl.reverse();
         });
     </script>
 
